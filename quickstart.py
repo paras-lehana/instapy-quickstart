@@ -65,7 +65,7 @@ with smart_run(session):
         # ~70% of the by InstaPy viewed posts will be liked
         session.set_do_like(enabled=True, percentage=70)
 
-        # session.set_dont_like(['#exactmatch', '[startswith', ']endswith', 'broadmatch'])
+        session.set_dont_like(['#exactmatch', '[startswith', ']endswith', '[lesbian', '[gay', '[like'])
         # will ignore the don't like if the description contains one of the given words
         session.set_ignore_if_contains(['glutenfree', 'french', 'tasty'])
 
@@ -81,7 +81,7 @@ with smart_run(session):
 	
 
         # activity		
-        session.like_by_tags(["natgeo"], amount=10)
+        # session.like_by_tags(["natgeo"], amount=10)
 
         # Joining Engagement Pods
 
@@ -129,8 +129,8 @@ with smart_run(session):
                                 max_posts=10000
         )
 
-        session.follow_likers(['paras.lehana'], photos_grab_amount = 10, follow_likers_per_photo = 10, randomize=True, sleep_delay=600, interact=False)
-        session.follow_commenters(['paras.lehana'], amount=10, daysold=10, max_pic = 10, sleep_delay=600, interact=False)
+        # session.follow_likers(['paras.lehana'], photos_grab_amount = 10, follow_likers_per_photo = 10, randomize=True, sleep_delay=600, interact=False)
+        # session.follow_commenters(['paras.lehana'], amount=10, daysold=10, max_pic = 10, sleep_delay=600, interact=False)
 
         session.unfollow_users(amount=60, instapy_followed_enabled=True, instapy_followed_param="nonfollowers", style="RANDOM", unfollow_after=7*24*60*60, sleep_delay=501)
 
@@ -144,7 +144,7 @@ with smart_run(session):
         # (log_tags) shows generated hashtags before use it
         # (use_smart_hashtags) activates like_by_tag to use smart hashtags
 
-        session.set_smart_hashtags(tags["default"], limit=5, sort='random', log_tags=True)
+        session.set_smart_hashtags(tags["default"], limit=5, sort='top', log_tags=True)
         session.like_by_tags(amount=50, use_smart_hashtags=True)
 
 
@@ -157,7 +157,7 @@ with smart_run(session):
 
         # -- SUPERVISE
         session.set_quota_supervisor(enabled=True, sleep_after=["likes", "comments_d", "follows", "unfollows", "server_calls_h"], sleepyhead=True, stochastic_flow=True, notify_me=True,
-                peak_likes_hourly=57,
+                peak_likes_hourly=None,
                 peak_likes_daily=585,
                 peak_comments_hourly=21,
                 peak_comments_daily=182,
