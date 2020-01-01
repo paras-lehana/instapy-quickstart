@@ -100,7 +100,7 @@ with smart_run(session):
         # -- FOLLOW
         # default enabled=False, follows ~ 10% of the users from the images, times=1
         # times = 2: (only follows a user twice (if unfollowed again))
-        session.set_do_follow(enabled=True, percentage=10, times=1)
+        session.set_do_follow(enabled=True, percentage=50, times=1)
 
         # will prevent commenting on and unfollowing your good friends (the images will still be liked)
         # session.set_dont_include(['friend1', 'friend2', 'friend3'])
