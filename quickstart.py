@@ -51,9 +51,19 @@ tags = {
 
 
 # get an InstaPy session!
-# set headless_browser=True to run InstaPy in the background
-session = InstaPy(username=insta_username, password=insta_password, headless_browser=False,
+# headless_browser: set True to run InstaPy in the background
+# geckodriver_path: If browser doesn't start, there is probably issue with geckodriver. Download latest driver and add path in geckodriver_path
+
+# Use this for windows (geckdriver path is required)
+""" session = InstaPy(username=insta_username, password=insta_password, headless_browser=False,
         geckodriver_path="D:\\Developer\\geckodriver-v0.26.0-win64\\geckodriver.exe",
+        want_check_browser = False
+) """
+
+# Else use this for Linux 
+session = InstaPy(
+        headless_browser=False,
+        geckodriver_path="/home/paras/Storage/path/geckodriver",
         want_check_browser = False
 )
 
@@ -63,7 +73,7 @@ with smart_run(session):
 
         # -- LIKE
         # ~70% of the by InstaPy viewed posts will be liked
-        session.set_do_like(enabled=True, percentage=70)
+        session.set_do_like(enabled=True, percentage=100)
 
         session.set_dont_like(['#exactmatch', '[startswith', ']endswith', '[lesbian', '[gay', '[like'])
         # will ignore the don't like if the description contains one of the given words
@@ -118,16 +128,20 @@ with smart_run(session):
                        dont_skip_business_categories=[]
         )
 
+        # potency_ratio: follows users having greater followers/following. If negative, absolute value of following/followers is checked. 
+
         session.set_relationship_bounds(enabled=True,
-                                potency_ratio=1.34,
+                                potency_ratio=None,
                                 delimit_by_numbers=True,
-                                max_followers=15000,
-                                max_following=15000,
+                                max_followers=3000,
+                                max_following=900,
                                 min_followers=50,
                                 min_following=50,
                                 min_posts=25,
                                 max_posts=10000
         )
+
+        session.set_simulation(enabled=False)
 
         # session.follow_likers(['paras.lehana'], photos_grab_amount = 10, follow_likers_per_photo = 10, randomize=True, sleep_delay=600, interact=False)
         # session.follow_commenters(['paras.lehana'], amount=10, daysold=10, max_pic = 10, sleep_delay=600, interact=False)
